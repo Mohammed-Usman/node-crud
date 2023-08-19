@@ -20,10 +20,22 @@ function goToHomePage(userAuthStatus){
 }
 
 
-userLogin().then(valid=>{
-    console.log("Validated User");
-    return goToHomePage(valid)
-}
-).then(userAuthStatus => console.log(userAuthStatus)
-).catch(err => console.log(err)
-).finally(()=>console.log("Finishings Up!"))
+// userLogin().then(valid=>{
+//     console.log("Validated User");
+//     return goToHomePage(valid)
+// }
+// ).then(userAuthStatus => console.log(userAuthStatus)
+// ).catch(err => console.log(err)
+// ).finally(()=>console.log("Finishings Up!"))
+
+(async ()=>{
+    try{
+        const response = await userLogin();
+        console.log("Validated User")
+        const userAuthStatus = await goToHomePage(response)
+        console.log(userAuthStatus)
+    } catch(err){
+        console.log(err)
+    }
+    
+})();
