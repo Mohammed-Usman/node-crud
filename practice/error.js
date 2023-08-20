@@ -1,12 +1,11 @@
-// const error = new Error("Soneting went wrong!") 
+// const error = new Error("Soneting went wrong!")
 
 // console.log(error.message)
 
 // throw new Error("I am error object")
 
-
 const { resolve } = require("path");
-const {CustomError} = require("./CustomError");
+const { CustomError } = require("./CustomError");
 const { reject } = require("lodash");
 
 // throw new CustomError("This is a custom error")
@@ -17,17 +16,14 @@ const { reject } = require("lodash");
 // catch(e){
 //     console.log("Error occured")
 //     console.log(e)
-// }   
+// }
 
+function doSomething() {
+  const data = fetch("localhost:3000/api");
 
-function doSomething(){
-
-    const data = fetch("localhost:3000/api");
-    
-    // console.log("I am from doSomething")
-    return "I am from doSomething"
+  // console.log("I am from doSomething")
+  return "I am from doSomething";
 }
- 
 
 // process.on("uncaughtException", ()=>{
 //     console.log("There was an uncaughtException")
@@ -35,7 +31,6 @@ function doSomething(){
 // })
 
 // doSomething();
-
 
 // const promise = new Promise((resolve, reject)=>{
 //     if (true){
@@ -52,15 +47,12 @@ function doSomething(){
 //     console.log(err)
 // })
 
+const someFunction = async () => {
+  try {
+    await doSomething();
+  } catch (err) {
+    throw new CustomError(err.message);
+  }
+};
 
-
-const someFunction = async ()=>{
-    try{
-        await doSomething();
-    }catch(err){
-        throw new CustomError(err.message)
-    }
-
-}
-
-someFunction()
+someFunction();

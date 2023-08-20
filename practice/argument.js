@@ -6,7 +6,6 @@ const minimist = require("minimist");
 //     console.log(`${index}:${val}`)
 // })
 
+const argNew = minimist(process.argv.slice(-1));
 
-const argNew = minimist(process.argv.slice(-1))
-
-console.log(argNew.name)
+console.log(argNew.name);

@@ -6,22 +6,18 @@
 //     setTimeout(cb,0)
 // }
 
-
 // asyncTask(()=>console.log(name));
 // console.log("Task End")
 // const name = "Usman"
 
-
-
 function asyncTask(cb) {
-    // setTimeout(() => {
-    //      cb()
+  // setTimeout(() => {
+  //      cb()
 
-    // }, 0
-    // )
-    cb(null,1);
+  // }, 0
+  // )
+  cb(null, 1);
 }
-
 
 // asyncTask((err, data) => {
 //     if (err) {
@@ -30,16 +26,16 @@ function asyncTask(cb) {
 //     console.log('data', data)
 // })
 
-function makeApiCall(cb){
-    setTimeout(()=>{
-        console.log("This is async task exec")
-    }, 0)
+function makeApiCall(cb) {
+  setTimeout(() => {
+    console.log("This is async task exec");
+  }, 0);
 }
 
-makeApiCall(()=>{
-    makeApiCall(()=>{
-        makeApiCall(()=>{
-    // call back hell
-        })  
-    })  
-})
+makeApiCall(() => {
+  makeApiCall(() => {
+    makeApiCall(() => {
+      // call back hell
+    });
+  });
+});

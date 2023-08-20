@@ -2,7 +2,6 @@
 
 // const p =  Promise.resolve('done 1')
 
-
 // p.then(val=>{
 //     console.log(val);
 //     // throw 'err'
@@ -20,41 +19,44 @@
 //         err => {console.log(err)}
 //     )
 
-
 // ----------------------------------------------------------------------------------------------------------------------
-
 
 // Example 2
 
-const makeApiCall = (time) =>{
-    return new Promise((resolve, reject)=>{
-        setTimeout(()=>{
-            resolve("api executen in: "+ time)
-        },time)
-    })
-}
-
+const makeApiCall = (time) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve("api executen in: " + time);
+    }, time);
+  });
+};
 
 // makeApiCall(1000).then(val=>{console.log(val)})
-console.log("Promise All")
-console.time("all")
-var multiApiCall = [makeApiCall(1000), makeApiCall(2000),makeApiCall(500)]
-Promise.all(multiApiCall).then((val)=>{console.log(val)})
+console.log("Promise All");
+console.time("all");
+var multiApiCall = [makeApiCall(1000), makeApiCall(2000), makeApiCall(500)];
+Promise.all(multiApiCall).then((val) => {
+  console.log(val);
+});
 
-console.timeEnd("all")
+console.timeEnd("all");
 
-console.log("Promise Race")
+console.log("Promise Race");
 
-console.time("all")
-var multiApiCal = [makeApiCall(1000), makeApiCall(2000),makeApiCall(500)]
-Promise.race(multiApiCall).then((val)=>{console.log(val)})
+console.time("all");
+var multiApiCal = [makeApiCall(1000), makeApiCall(2000), makeApiCall(500)];
+Promise.race(multiApiCall).then((val) => {
+  console.log(val);
+});
 
-console.timeEnd("all")
+console.timeEnd("all");
 
-console.log("Promise All Setteled")
+console.log("Promise All Setteled");
 
-console.time("all")
-var multiApiCal = [makeApiCall(1000), makeApiCall(2000),makeApiCall(500)]
-Promise.allSettled(multiApiCall).then((val)=>{console.log(val)})
+console.time("all");
+var multiApiCal = [makeApiCall(1000), makeApiCall(2000), makeApiCall(500)];
+Promise.allSettled(multiApiCall).then((val) => {
+  console.log(val);
+});
 
-console.timeEnd("all")
+console.timeEnd("all");

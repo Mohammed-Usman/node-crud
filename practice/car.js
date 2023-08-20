@@ -13,11 +13,11 @@
 // exports.data = {ford, tesla};
 
 exports.ford = {
-    "brand": "Ford",
-    "model": "Fiesta"
-}
+  brand: "Ford",
+  model: "Fiesta",
+};
 
-exports.tesla= {
-    "brand": "Tesla",
-    "model": "MOdel X"
-}
+exports.tesla = {
+  brand: "Tesla",
+  model: "MOdel X",
+};
