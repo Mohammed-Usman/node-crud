@@ -2,13 +2,17 @@
   "name": "crud",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
   },
   "author": "",
   "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
   "dependencies": {
-    "ijavascript": "^5.2.1"
+    "dotenv": "^16.3.1"
   }
 }
