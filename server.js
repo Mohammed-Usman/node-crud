@@ -13,3 +13,10 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(PORT, () => console.log(`Server started on port: ${PORT}`));
+
+// Types of Middleware
+// Application Level middleware
+// Third Party middleware
+// Router level middleware
+// Built-it middleware
+// Error-handling middleware
