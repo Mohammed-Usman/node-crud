@@ -1,0 +1,16 @@
+[
+    {
+        "id": 1,
+        "title": "The king",
+        "year": 2018,
+        "genre": "Action",
+        "rating": 7.9
+    },
+    {
+        "id": 1,
+        "title": "Dune",
+        "year": 2022,
+        "genre": "scifi, Action",
+        "rating": 6
+    }
+]
