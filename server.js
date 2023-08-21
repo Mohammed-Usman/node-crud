@@ -8,11 +8,13 @@ const deleteReq = require("./methods/delete-request");
 
 let movies = require("./data/movies.json");
 
+
 config();
 
 const PORT = process.env.PORT || 5001;
 
 const server = http.createServer((req, res) => {
+
   req.movies = movies;
 
   switch (req.method) {
