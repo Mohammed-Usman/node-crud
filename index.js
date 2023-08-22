@@ -1,5 +1,7 @@
+/* eslint-disable no-console */
 const express = require('express');
 const { config } = require('dotenv');
+const logger = require('morgan');
 
 const router = express.Router();
 
@@ -8,6 +10,10 @@ config();
 const PORT = process.env.PORT || 3001;
 
 const app = express();
+
+// Built in middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Application level middleware
 const loggerMiddleware = (req, res, next) => {
@@ -18,7 +24,7 @@ const loggerMiddleware = (req, res, next) => {
 
 // Router Level Middleware
 const fakeAuth = (req, res, next) => {
-	const authStatus = false;
+	const authStatus = true;
 	if (authStatus) {
 		// eslint-disable-next-line no-console
 		console.log('User Auth Status', authStatus);
@@ -28,8 +34,11 @@ const fakeAuth = (req, res, next) => {
 		throw new Error('Users is not authorized');
 	}
 };
-
+// Application level middleware
 app.use(loggerMiddleware);
+// Third party middleware
+app.use(logger('combined'));
+
 app.use('/api/users', router);
 
 const getUsers = (req, res) => {
@@ -37,11 +46,42 @@ const getUsers = (req, res) => {
 };
 
 const createUser = (req, res) => {
+	console.log('THis is the request body from client', req.body);
 	res.json({ message: 'Create new User' });
 };
 
+// Router Level Middleware
 router.use(fakeAuth);
 router.route('/').get(getUsers).post(createUser);
+
+const errorHandler = (err, req, res, next) => {
+	const statusCode = res.statusCode ? res.statusCode : 500;
+	res.status(statusCode);
+
+	switch (statusCode) {
+		case 401:
+			res.json({ title: 'Unathorized', message: err.message });
+			break;
+
+		case 404:
+			res.json({ title: 'Not Found', message: err.message });
+			break;
+
+		case 500:
+			res.json({ title: 'Internal Server Error', message: err.message });
+			break;
+
+		default:
+			break;
+	}
+};
+
+app.all('*', (req, res) => {
+	res.status(404);
+	throw new Error('Route Not Found');
+});
+
+app.use(errorHandler);
 
 app.listen(PORT, () => {
 	// eslint-disable-next-line no-console
