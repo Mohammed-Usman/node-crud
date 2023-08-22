@@ -1,22 +1,26 @@
-const http = require('http');
+/* eslint-disable no-console */
+
+const express = require('express');
 const { config } = require('dotenv');
+// eslint-disable-next-line import/no-extraneous-dependencies
+const logger = require('morgan');
+const contactsRouter = require('./routes/contactsRoutes');
 
 config();
 
-const PORT = process.env.PORT || 5001;
+const PORT = process.env.PORT || 5000;
 
-const server = http.createServer((req, res) => {
-	res.statusCode = 200;
-	res.setHeader('Content-Type', 'application/json');
-	res.write(JSON.stringify({ message: 'Hello World' }));
-	res.end();
+const app = express();
+
+app.use(logger('dev'));
+app.use('/api/contacts', contactsRouter);
+
+// app.get('/api/contacts', (req, res) => {
+
+// 	res.status(201);
+// 	res.json({ message: 'Message' });
+// });
+
+app.listen(PORT, () => {
+	console.log(`Server is running on port ${PORT}`);
 });
-
-server.listen(PORT, () => console.log(`Server started on port: ${PORT}`));
-
-// Types of Middleware
-// Application Level middleware
-// Third Party middleware
-// Router level middleware
-// Built-it middleware
-// Error-handling middleware
