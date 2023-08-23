@@ -1,18 +1,23 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-console */
 
 const express = require('express');
-const { config } = require('dotenv');
-// eslint-disable-next-line import/no-extraneous-dependencies
+
 const logger = require('morgan');
 const contactsRouter = require('./routes/contactsRoutes');
+const errorHandler = require('./middleware/errorHandler');
+const connectDb = require('./config/dbConnection');
 
-config();
+require('dotenv').config();
 
-const PORT = process.env.PORT || 5000;
+connectDb();
+const PORT = process.env.PORT || 5001;
 
 const app = express();
 
+app.use(express.json());
 app.use(logger('dev'));
+
 app.use('/api/contacts', contactsRouter);
 
 // app.get('/api/contacts', (req, res) => {
@@ -20,7 +25,7 @@ app.use('/api/contacts', contactsRouter);
 // 	res.status(201);
 // 	res.json({ message: 'Message' });
 // });
-
+app.use(errorHandler);
 app.listen(PORT, () => {
 	console.log(`Server is running on port ${PORT}`);
 });
