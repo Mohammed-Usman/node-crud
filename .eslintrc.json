@@ -59,7 +59,7 @@
     ],
     "camelcase": "error",
     "no-dupe-else-if": "error",
-    "comma-dangle": "error",
+    "comma-dangle": "off",
     // functional
     "valid-jsdoc": "off",
     // "strict": ["error", "global"],
