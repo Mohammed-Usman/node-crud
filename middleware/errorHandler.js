@@ -42,6 +42,13 @@ module.exports = (err, req, res, next) => {
 				stackTrace: err.stackTrace
 			});
 			break;
+		case constants.CONFLICT:
+			res.json({
+				title: 'Record Error',
+				message: err.message,
+				stackTrace: err.stackTrace
+			});
+			break;
 		default:
 			console.log('No Error');
 			break;
