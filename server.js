@@ -5,6 +5,7 @@ const express = require('express');
 
 const logger = require('morgan');
 const contactsRouter = require('./routes/contactsRoutes');
+const usersRouter = require('./routes/usersRoutes.js');
 const errorHandler = require('./middleware/errorHandler');
 const connectDb = require('./config/dbConnection');
 
@@ -19,6 +20,7 @@ app.use(express.json());
 app.use(logger('dev'));
 
 app.use('/api/contacts', contactsRouter);
+app.use('/api/users', usersRouter);
 
 // app.get('/api/contacts', (req, res) => {
 
