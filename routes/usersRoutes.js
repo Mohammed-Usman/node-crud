@@ -1,6 +1,7 @@
 /* eslint-disable comma-dangle */
 
 const express = require('express');
+const validateToken = require('../middleware/validateTokenHandler');
 const {
 	userRegister,
 	loginUser,
@@ -14,7 +15,7 @@ router.post('/register', userRegister);
 
 router.post('/login', loginUser);
 
-router.post('/current', currentUser);
+router.post('/current', validateToken, currentUser);
 router.delete('/:id', deleteUser);
 
 module.exports = router;
