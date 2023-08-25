@@ -1,5 +1,6 @@
 /* eslint-disable comma-dangle */
 const express = require('express');
+const validateToken = require('../middleware/validateTokenHandler');
 
 const router = express.Router();
 
@@ -10,6 +11,8 @@ const {
 	updateContact,
 	deleteContact
 } = require('../controllers/contactController');
+
+router.use(validateToken);
 
 router.get('/', getContacts);
 
