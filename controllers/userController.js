@@ -47,6 +47,7 @@ module.exports.loginUser = asyncHandler(async (req, res) => {
 
 	const user = await User.findOne({ email });
 
+	// Compare password with hash
 	if (user && (await bcrypt.compare(password, user.password))) {
 		const accessToken = jwt.sign(
 			{
@@ -57,22 +58,20 @@ module.exports.loginUser = asyncHandler(async (req, res) => {
 				}
 			},
 			process.env.ACCESS_TOKEN_SECRET,
-			{ expiresIn: '1m' }
+			{ expiresIn: '50m' }
 		);
 		res.status(200).json({ accessToken });
 	} else {
 		res.status(401);
 		throw new Error('Invalid credentials');
 	}
-
-	//compare password with hash
 });
 
 // @desc Current user
 // @ route POST /api/users/current
 // @access private
 module.exports.currentUser = asyncHandler(async (req, res) => {
-	res.json({ message: 'Current User' });
+	res.json(req.user);
 });
 
 // @desc Delete user
